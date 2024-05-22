@@ -141,9 +141,9 @@ class CRM_Gotowebinar_Utils {
   public static function setItem($value, $group, $name) {
     $isCiviCRMVersion47 = CRM_Gotowebinar_Utils::isCiviCRMVersion47();
     if ($isCiviCRMVersion47) {
-      Civi::settings()->set($name, $value);
+      $settingValue =    Civi::settings()->set($name, $value);
     } else {
-      CRM_Core_BAO_Setting::setItem($value, $group, $name);
+      $settingValue = CRM_Core_BAO_Setting::setItem($value, $group, $name);
     }
     return $settingValue;
   }
