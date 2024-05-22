@@ -75,7 +75,9 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form {
    * @access public
    */
   public function buildQuickForm() {
-
+    $this->assign('initial', NULL);
+    $this->assign('error');
+    $this->assign('location');
     $status = CRM_Event_PseudoConstant::participantStatus(NULL, NULL, 'label');
     foreach ($status as $id => $Name) {
       $this->addElement('checkbox', "participant_status_id[$id]", NULL, $Name);
