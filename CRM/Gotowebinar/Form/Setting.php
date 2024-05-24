@@ -22,7 +22,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
             $apiKey = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP, 'api_key');
             $clientSecret = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP, 'client_secret');
 
-            $url = WEBINAR_API_URL.'/oauth/v2/token';
+            $url = LOGMEIN_URL.'/oauth/token';
             // Setting up the curl fields
             $postFields = "grant_type=authorization_code&code={$authorizationCode}&redirect_uri=".$redirectUrl;
             // Encoding the api key and client secret along with the ':' symbol into the base64 format
@@ -215,7 +215,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
                 CRM_Gotowebinar_Utils::setItem($params['client_secret'], self::WEBINAR_SETTING_GROUP, 'client_secret');
                 Civi::settings()->set('gotowebinar_client_id', $params['gotowebinar_client_id']);
                 Civi::settings()->set('gotowebinar_client_secret', $params['gotowebinar_client_secret']);
-                $authUrl = LOGMEIN_URL.'/authorize?response_type=code&state=civicrmauthorize&client_id='.$params['gotowebinar_client_id'].'&redirect_uri='.$redirectUrl;
+                $authUrl = LOGMEIN_URL.'/oauth/authorize?response_type=code&state=civicrmauthorize&client_id='.$params['gotowebinar_client_id'].'&redirect_uri='.$redirectUrl;
                 $authDestination = urldecode($authUrl);
                 CRM_Utils_System::redirect($authDestination);
             }

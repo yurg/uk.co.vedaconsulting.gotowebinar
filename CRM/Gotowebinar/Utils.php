@@ -27,7 +27,7 @@ class CRM_Gotowebinar_Utils {
     $headers = array();
     $headers[] = "Authorization: Basic ".$Base64EncodedCredentials;
     $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-    $url = WEBINAR_API_URL."/oauth/v2/token";
+    $url = LOGMEIN_URL."/oauth/v2/token";
     $postFields = "grant_type=refresh_token&refresh_token=".$refreshToken;
 
     $response = CRM_Gotowebinar_Utils::apiCall($url, $headers, $postFields);
