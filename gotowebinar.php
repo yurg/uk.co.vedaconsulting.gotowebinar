@@ -2,6 +2,7 @@
 
 require_once 'gotowebinar.civix.php';
 define('WEBINAR_API_URL', 'https://api.getgo.com');
+define('LOGMEIN_URL', 'https://authentication.logmeininc.com/oauth');
 define('REGISTRANT_KEY','Registrant_Key');
 
 /**

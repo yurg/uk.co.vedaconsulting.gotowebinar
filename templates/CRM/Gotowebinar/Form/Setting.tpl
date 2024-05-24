@@ -2,11 +2,81 @@
   <div class="crm-accordion-wrapper crm-accordion_webinar_setting-accordion crm-accordion-open">
     <div class="crm-accordion-header">
       <div class="icon crm-accordion-pointer"></div>
-      {ts}API Key Setting{/ts}
-      {ts}Client Secret Setting{/ts}
+      {ts}API Setting{/ts}      
     </div><!-- /.crm-accordion-header -->
     <div class="crm-accordion-body">
-      {if !$initial}
+      {*if !$initial*}
+
+      <div class="crm-webinar-information-api-key-block help">
+              <h2>{ts}Logmeininc Connected{/ts}</h2>
+              <table class="form-layout-compressed">
+              <tr class="crm-webinar-setting-client-id-block">
+                <td class="label">{$form.gotowebinar_client_id.label}</td>
+                <td>{$form.gotowebinar_client_id.html}<br/>
+                  <span class="description">{ts}Client ID (https://developer.logmeininc.com/clients){/ts}
+                  </span>
+                </td>
+              </tr>           
+              <tr class="crm-webinar-setting-client-secret-block">
+                <td class="label">{$form.gotowebinar_client_secret.label}</td>
+                <td>{$form.gotowebinar_client_secret.html}<br/>
+                  <span class="description">{ts}Client Secret (https://developer.logmeininc.com/clients){/ts}
+                  </span>
+                </td>
+              </tr>
+              <tr class="crm-webinar-setting-organizer-key-block">
+              <td class="label">{$form.gotowebinar_organizer_key.label}</td>
+              <td>{$form.gotowebinar_organizer_key.html}<br/>
+                <span class="description">{ts}Organizer Key{/ts}
+                </span>
+              </td>
+            </tr> 
+            <tr class="crm-webinar-setting-access-token-block">
+              <td class="label">{$form.gotowebinar_access_token.label}</td>
+              <td>{$form.gotowebinar_access_token.html}<br/>
+                <span class="description">{ts}Access Token{/ts}
+                </span>
+              </td>
+            </tr>
+              </table>
+<hr>
+              {*if $initial*}
+              <h2>{ts}GoTo API Connected{/ts}</h2>
+        <table class="form-layout-compressed">
+        <tr class="crm-webinar-setting-api-key-block">
+          <td class="label">{$form.api_key.label}</td>
+          <td>{$form.api_key.html}<br/>
+            <span class="description">{ts}The Consumer Key from your GoToWebinar App{/ts}
+            </span>
+          </td>
+        </tr>
+        <tr class="crm-webinar-setting-client-secret-block">
+          <td class="label">{$form.client_secret.label}</td>
+          <td>{$form.client_secret.html}<br/>
+            <span class="description">{ts}The Consumer Secret from your GoToWebinar App{/ts}
+            </span>
+          </td>
+        </tr>
+        <tr class="crm-webinar-setting-api-key-email">
+          <td class="label">{$form.email_address.label}</td>
+          <td>{$form.email_address.html}<br/>
+            <span class="description">{ts}Username to connect Webinar account{/ts}
+            </span>
+          </td>
+        </tr>
+        <tr class="crm-webinar-setting-api-key-password">
+          <td class="label">{$form.password.label}</td>
+          <td>{$form.password.html}<br/>
+            <span class="description">{ts}Password to connect Webinar account{/ts}
+            </span>
+          </td>
+        </tr>
+      </table>
+    {*/if*}
+
+
+       </div>
+
        <div>
         <div>
           <label>{ts}Participant Status To Be Considered {/ts}</label>
@@ -21,44 +91,9 @@
       </div>
       <br/>
       <br/>
-      {/if}
-      {if $responseKey}
-        <div class="crm-webinar-information-api-key-block help">
-            <strong>Info:</strong> Your account is connected.&nbsp;Here are your Upcoming Webinars
-        </div>
-      {/if}
-      {if $initial}
-        <table class="form-layout-compressed">
-          <tr class="crm-webinar-setting-api-key-block">
-            <td class="label">{$form.api_key.label}</td>
-            <td>{$form.api_key.html}<br/>
-              <span class="description">{ts}The Consumer Key from your GoToWebinar App{/ts}
-              </span>
-            </td>
-          </tr>
-          <tr class="crm-webinar-setting-client-secret-block">
-            <td class="label">{$form.client_secret.label}</td>
-            <td>{$form.client_secret.html}<br/>
-              <span class="description">{ts}The Consumer Secret from your GoToWebinar App{/ts}
-              </span>
-            </td>
-          </tr>
-          <tr class="crm-webinar-setting-api-key-email">
-            <td class="label">{$form.email_address.label}</td>
-            <td>{$form.email_address.html}<br/>
-              <span class="description">{ts}Username to connect Webinar account{/ts}
-              </span>
-            </td>
-          </tr>
-          <tr class="crm-webinar-setting-api-key-password">
-            <td class="label">{$form.password.label}</td>
-            <td>{$form.password.html}<br/>
-              <span class="description">{ts}Password to connect Webinar account{/ts}
-              </span>
-            </td>
-          </tr>
-        </table>
-      {/if}
+      {*/if*}
+      {*if $responseKey*}
+      {*/if*}
       {if $responseKey}
       <table class="dataTable">
         <thead >
