@@ -73,14 +73,10 @@
         </tr>
       </table>
     {*/if*}
-
-
        </div>
-
+       
        <div>
-        <div>
-          <label>{ts}Participant Status To Be Considered {/ts}</label>
-        </div>
+         <h2>{ts}Participant Status To Be Considered {/ts}</h2>
         <div class="listing-box" style="height: 120px">
             {foreach from=$form.participant_status_id item="participant_status_val"}
                 <div class="{cycle values="odd-row,even-row"}">
@@ -89,12 +85,12 @@
             {/foreach}
         </div>
       </div>
-      <br/>
-      <br/>
+
       {*/if*}
       {*if $responseKey*}
       {*/if*}
       {if $responseKey}
+        <h2>{ts}Available Webinars{/ts}</h2>
       <table class="dataTable">
         <thead >
           <tr>
