@@ -5,7 +5,6 @@
       {ts}API Setting{/ts}      
     </div><!-- /.crm-accordion-header -->
     <div class="crm-accordion-body">
-      {*if !$initial*}
       <div class="crm-webinar-information-api-key-block help">
               <h2>{ts}Logmeininc Connected{/ts}</h2>
               <table class="form-layout-compressed">
@@ -36,42 +35,15 @@
                 <span class="description">{ts}Access Token{/ts}
                 </span>
               </td>
+            </tr> 
+            <tr class="crm-webinar-setting-refresh-token-block">
+              <td class="label">{$form.gotowebinar_refresh_token.label}</td>
+              <td>{$form.gotowebinar_refresh_token.html}<br/>
+                <span class="description">{ts}Refresh Token{/ts}
+                </span>
+              </td>
             </tr>
               </table>
-<hr>
-              {*if $initial*}
-              <h2>{ts}GoTo API Connected{/ts}</h2>
-        <table class="form-layout-compressed">
-        <tr class="crm-webinar-setting-api-key-block">
-          <td class="label">{$form.api_key.label}</td>
-          <td>{$form.api_key.html}<br/>
-            <span class="description">{ts}The Consumer Key from your GoToWebinar App{/ts}
-            </span>
-          </td>
-        </tr>
-        <tr class="crm-webinar-setting-client-secret-block">
-          <td class="label">{$form.client_secret.label}</td>
-          <td>{$form.client_secret.html}<br/>
-            <span class="description">{ts}The Consumer Secret from your GoToWebinar App{/ts}
-            </span>
-          </td>
-        </tr>
-        <tr class="crm-webinar-setting-api-key-email">
-          <td class="label">{$form.email_address.label}</td>
-          <td>{$form.email_address.html}<br/>
-            <span class="description">{ts}Username to connect Webinar account{/ts}
-            </span>
-          </td>
-        </tr>
-        <tr class="crm-webinar-setting-api-key-password">
-          <td class="label">{$form.password.label}</td>
-          <td>{$form.password.html}<br/>
-            <span class="description">{ts}Password to connect Webinar account{/ts}
-            </span>
-          </td>
-        </tr>
-      </table>
-    {*/if*}
        </div>
        
        <div>
@@ -84,30 +56,27 @@
             {/foreach}
         </div>
       </div>
-
-      {*/if*}
-      {*if $responseKey*}
-      {*/if*}
-      {if $responseKey}
-        <h2>{ts}Available Webinars{/ts}</h2>
-      <table class="dataTable">
+      {if $upcomingWebinars}
+    <h2>{ts}Available Webinars{/ts}</h2>
+      <table id="gotowebinar_settings">
         <thead >
           <tr>
-            <th>{ts}Description{/ts}</th>
-            <th>{ts}Subject{/ts}</th>
             <th>{ts}Webinar Key{/ts}</th>
+            <th>{ts}Subject{/ts}</th>
+            <th>{ts}Description{/ts}</th>
             <th>{ts}Start Time{/ts}</th>
             <th>{ts}End Time{/ts}</th>
          </tr>
          <tbody>
             {foreach from=$upcomingWebinars item=webinar}
               <tr>
-                <td>{$webinar.description}</td>
+              <td>{$webinar.webinarKey}</td>
+              
                 <td>
                   {$webinar.subject}
                   <p style="color: red;">{$webinar.warning}</p>
                 </td>
-                <td>{$webinar.webinarKey}</td>
+                <td>{$webinar.description}</td>
                 {assign var=times value=$webinar.times}
                 <td>{$times[0].startTime|crmDate}</td>
                 <td>{$times[0].endTime|crmDate}</td>
@@ -115,12 +84,23 @@
             {/foreach}
           </tbody>
         </table>
+        {literal}
+          <script>
+            (function(cj){              
+              var webinarSettingsTableSelector = '#gotowebinar_settings';
+              cj(document).ready(function() {
+                cj(webinarSettingsTableSelector).dataTable();
+              });
+            })(cj);
+          </script>
+          {/literal}
       {/if}
+
       {if $clienterror}
         <table class="form-layout-compressed">
           <tr class="crm-webinar-information-erro-api-key-block">
           <td class="label" style="color:red">{ts} Info:{/ts}</td>
-          <td class="label" style="color:red">{ts}{$clienterror.int_err_code}{/ts}&nbsp;&nbsp;&nbsp;&nbsp;{ts}{$clienterror.msg}{/ts}</td>
+          <td class="label" style="color:red">{ts}{$clienterror}{/ts}</td>
           </tr>
         </table>
       {/if}
@@ -128,7 +108,7 @@
         <table class="form-layout-compressed">
           <tr class="crm-webinar-information-erro-api-key-block">
           <td class="label" style="color:red">{ts} Info:{/ts}</td>
-          <td class="label" style="color:red">{ts}{$error.int_err_code}{/ts}&nbsp;&nbsp;&nbsp;&nbsp;{ts}{$error.msg}{/ts}</td>
+          <td class="label" style="color:red">{ts}{$error}{/ts}</td>
           </tr>
         </table>
       {/if}

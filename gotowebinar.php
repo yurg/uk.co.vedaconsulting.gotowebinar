@@ -273,22 +273,15 @@ function gotowebinar_civicrm_custom( $op, $groupID, $entityID, &$params ){
 
 function gotowebinar_civicrm_buildForm($formName, &$form) {
   if ($formName == 'CRM_Event_Form_ManageEvent_EventInfo' AND ($form->getAction() == CRM_Core_Action::ADD OR $form->getAction() == CRM_Core_Action::UPDATE)) {
-
-     $accessToken = CRM_Gotowebinar_Utils::getItem(CRM_Gotowebinar_Form_Setting::WEBINAR_SETTING_GROUP,
-      'access_token', NULL, FALSE
-    );
-      $organizerKey = CRM_Gotowebinar_Utils::getItem(CRM_Gotowebinar_Form_Setting::WEBINAR_SETTING_GROUP,
-      'organizer_key', NULL, FALSE
-    );
-
-    if($accessToken && $organizerKey) {
+    CRM_Gotowebinar_Utils::refreshAccessToken();
+    $access_token = Civi::settings()->get('gotowebinar_access_token');
+    $organizer_key = Civi::settings()->get('gotowebinar_organizer_key');
+   // $validToken = empty(Civi::settings()->get('gotowebinar_refresh_token'))? CRM_Gotowebinar_Utils::refreshAccessToken(): TRUE;
+    if($access_token && $organizer_key) {
+    
       $upcomingWebinars = CRM_Gotowebinar_Form_Setting::findUpcomingWebinars();
-      if(isset($upcomingWebinars['int_err_code']) && $upcomingWebinars['int_err_code'] == 'InvalidToken'){
-        $validToken = CRM_Gotowebinar_Utils::refreshAccessToken();
-        if($validToken){
-          $upcomingWebinars = CRM_Gotowebinar_Form_Setting::findUpcomingWebinars();
-        }
-      }
+    
+    
       if(isset($upcomingWebinars['int_err_code']) && $upcomingWebinars['int_err_code'] != '') {
         $error['message'] = ts('Unable to fetch the Upcoming Webinars, please check the webinar settings page');
         $form->assign('error_message', $error);

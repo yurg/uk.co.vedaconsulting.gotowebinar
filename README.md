@@ -1,5 +1,8 @@
 # GoToWebinar Integration for CiviCRM Events #
 
+### Why the fork ### 
+[GOTO API updates 2024: API Host and API Authentication Token Deprecation](https://developer.goto.com/guides/Authentication/New_Token_Retrieval_Migration_Guide/)
+
 ### Overview ###
 
 CiviCRM Events can be integrated with GoToWebinar.

@@ -5,11 +5,11 @@
   <description>CiviCRM Event Integration With GoToWebinar</description>
   <license>AGPL-3.0</license>
   <maintainer>
-    <author>Veda Consulting</author>
-    <email>support@vedaconsulting.co.uk</email>
+    <author>Veda Consulting, yurg</author>
+    <email>support@vedaconsulting.co.uk,yurg@yurg.org</email>
   </maintainer>
   <releaseDate>2022-04-26</releaseDate>
-  <version>3.0.4</version>
+  <version>3.1.0-alpha</version>
   <develStage>stable</develStage>
   <compatibility>
     <ver>4.5</ver>
@@ -27,5 +27,9 @@
   </urls>
    <mixins>
     <mixin>menu-xml@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.1</mixin>
   </mixins>
+  <classloader>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
 </extension>

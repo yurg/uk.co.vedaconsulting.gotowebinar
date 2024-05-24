@@ -12,20 +12,20 @@
       <table id="webinar_settings" cellspacing="0" width="100%" >
         <thead>
           <tr>
-            <th>Description</th>
-            <th>Subject</th>
-            <th>Webinar Key</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+          <th>Webinar Key</th>          
+          <th>Subject</th>
+          <th>Description</th>
+          <th>Start Time</th>
+          <th>End Time</th>
           </tr>
         </thead>
         <tbody>
           {foreach from=$upcomingWebinars item=webinar}
           {assign var=times value=$webinar.times}
             <tr>
+            <td class='webminarKey' sortable="true" style="cursor: pointer;" title="Click the key to populate Webinar Key.">{$webinar.webinarKey}</td>  
+            <td style="cursor: pointer; class='subject' sortable="true">{$webinar.subject}</td>             
               <td style="cursor: pointer; sortable="true">{$webinar.description}</td>
-              <td style="cursor: pointer; class='subject' sortable="true">{$webinar.subject}</td>
-              <td class='webminarKey' sortable="true" style="cursor: pointer;" title="Click the key to populate Webinar Key.">{$webinar.webinarKey}</td>
               <td style="cursor: pointer; sortable="true">{$times[0].startTime|crmDate}</td>
               <td style="cursor: pointer; sortable="true">{$times[0].endTime|crmDate}</td>
             </tr>
@@ -47,7 +47,7 @@
       cj(document).tooltip();
 
       cj(webinarSettingsTableSelector).find('tbody').on('click', 'tr', function (){
-        var name = cj('td', this).eq(2).text();
+        var name = cj('td', this).eq(0).text();
 
         cj(webinarKeyFieldSelector).val(name);
       });
