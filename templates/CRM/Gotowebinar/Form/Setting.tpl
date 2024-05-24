@@ -6,7 +6,6 @@
     </div><!-- /.crm-accordion-header -->
     <div class="crm-accordion-body">
       {*if !$initial*}
-
       <div class="crm-webinar-information-api-key-block help">
               <h2>{ts}Logmeininc Connected{/ts}</h2>
               <table class="form-layout-compressed">

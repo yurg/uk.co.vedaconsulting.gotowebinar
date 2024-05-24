@@ -2,6 +2,7 @@
 
 class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
 {
+    // @TODO Deprecate
     public const WEBINAR_SETTING_GROUP = 'Webinar Preferences';
 
     /**
@@ -19,6 +20,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
             $redirectUrl = CRM_Utils_System::url('civicrm/gotowebinar/settings', null, true, null, false, true);
             // We have the authorization code so get the access token
             $authorizationCode = $_GET['code'];
+              // @TODO Deprecate
             $apiKey = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP, 'api_key');
             $clientSecret = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP, 'client_secret');
 
@@ -87,11 +89,12 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
         $this->assign('initial', null);
         $this->assign('error');
         $this->assign('location');
+          // @TODO Deprecate
         $status = CRM_Event_PseudoConstant::participantStatus(null, null, 'label');
         foreach ($status as $id => $Name) {
             $this->addElement('checkbox', "participant_status_id[$id]", null, $Name);
         }
-
+  // @TODO Deprecate
         $accessToken = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP,
             'access_token', null, false
         );
@@ -154,6 +157,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
 
     public function setDefaultValues()
     {
+        // @TODO Deprecate
         $defaults = $details = [];
         $status = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP, 'participant_status');
         $apiKey = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP, 'api_key');
@@ -203,7 +207,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
     {
         // Store the submitted values in an array.
         $params = $this->controller->exportValues($this->_name);
-
+  // @TODO Deprecate
         // Save the API Key & Save the Security Key
         if (CRM_Utils_Array::key('api_key', $params) && CRM_Utils_Array::key('client_secret', $params)) {
             $redirectUrl = CRM_Utils_System::url('civicrm/gotowebinar/settings', null, true, null, false, true);
@@ -223,6 +227,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
 
         // If gotowebinar was already connected, we introduced button called 'save status'
         if (isset($params['participant_status_id'])) {
+            // @TODO Deprecate
             CRM_Gotowebinar_Utils::setItem(array_keys($params['participant_status_id']),
                 self::WEBINAR_SETTING_GROUP, 'participant_status'
             );
@@ -231,6 +236,7 @@ class CRM_Gotowebinar_Form_Setting extends CRM_Core_Form
 
     public static function findUpcomingWebinars()
     {
+        // @TODO Deprecate
         $accessToken = CRM_Gotowebinar_Utils::getItem(self::WEBINAR_SETTING_GROUP,
             'access_token', null, false
         );
